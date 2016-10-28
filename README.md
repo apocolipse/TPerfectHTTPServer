@@ -63,4 +63,4 @@ try? server?.serve()
 
 Questions and Support
 =====================
-I can usually be found floating around #thrift and #swift on FreeNode, as well as on Perfect's official [Slack](http://slack.Perfect.io/), feel free to bombard with questions.
+I can usually be found floating around #thrift and #swift on FreeNode.
