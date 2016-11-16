@@ -16,7 +16,7 @@ let logQueue = DispatchQueue(label: "THttpServer.log.q", qos: .background, attri
 let pQueue = DispatchQueue(label: "THttpServer.process.q", qos: .userInitiated, attributes: .concurrent)
 
 
-class TPerfectServer<InProtocol: TProtocol, OutProtocol: TProtocol, Processor: TProcessor, Service> where Processor.Service == Service {
+open class TPerfectHTTPServer<InProtocol: TProtocol, OutProtocol: TProtocol, Processor: TProcessor, Service> where Processor.Service == Service {
 
  private var server = HTTPServer()
  var serviceHandler: Service
@@ -77,7 +77,7 @@ class TPerfectServer<InProtocol: TProtocol, OutProtocol: TProtocol, Processor: T
    server.addRoutes(routes)
  }
 
- func serve() throws {
+ public func serve() throws {
    try server.start()
  }
 }
