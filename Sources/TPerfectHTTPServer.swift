@@ -11,6 +11,7 @@ import PerfectHTTP
 import PerfectHTTPServer
 import Thrift
 import Foundation
+import Dispatch
 
 let logQueue = DispatchQueue(label: "THttpServer.log.q", qos: .background, attributes: .concurrent)
 let pQueue = DispatchQueue(label: "THttpServer.process.q", qos: .userInitiated, attributes: .concurrent)
