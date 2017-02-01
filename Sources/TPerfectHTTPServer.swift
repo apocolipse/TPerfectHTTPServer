@@ -11,9 +11,9 @@ import PerfectHTTP
 import PerfectHTTPServer
 import Thrift
 import Foundation
+import PerfectRequestLogger
 import Dispatch
 
-let logQueue = DispatchQueue(label: "THttpServer.log.q", qos: .background, attributes: .concurrent)
 let pQueue = DispatchQueue(label: "THttpServer.process.q", qos: .userInitiated, attributes: .concurrent)
 
 
@@ -76,6 +76,14 @@ open class TPerfectHTTPServer<InProtocol: TProtocol, OutProtocol: TProtocol, Pro
      }
    }
    server.addRoutes(routes)
+   // Instantiate a logger
+   let myLogger = RequestLogger()
+  
+   // Add the filters
+   // Request filter at high priority to be executed first
+   server.setRequestFilters([(myLogger, .high)])
+   // Response filter at low priority to be executed last
+   server.setResponseFilters([(myLogger, .low)])
  }
 
  public func serve() throws {
