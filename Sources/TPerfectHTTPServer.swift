@@ -11,8 +11,6 @@ import PerfectHTTP
 import PerfectHTTPServer
 import Thrift
 import Foundation
-import PerfectRequestLogger
-import PerfectLogger
 
 open class TPerfectHTTPServer<InProtocol: TProtocol, OutProtocol: TProtocol, Processor: TProcessor, Service> where Processor.Service == Service {
   
@@ -25,12 +23,6 @@ open class TPerfectHTTPServer<InProtocol: TProtocol, OutProtocol: TProtocol, Pro
     self.serviceHandler = service
     // setup route
     let route = Route(method: .post, uri: "/\(path)", handler: { request, response in
-      // logging helper
-      func log() {
-        let msgTuple = try? InProtocol(on: request.readTransport()).readMessageBegin()
-        LogFile.info("\(Date()) [\(name):\(msgTuple?.0 ?? "unknown")] from \(request.remoteAddress.host)")
-      }
-      
       // set header
       response.setHeader(.contentType, value: "application/x-thrift")
       
@@ -38,7 +30,6 @@ open class TPerfectHTTPServer<InProtocol: TProtocol, OutProtocol: TProtocol, Pro
       let inProtocol = InProtocol(on: request.readTransport())
       let outTransport = response.writeTransport()
       let outProtocol = OutProtocol(on: outTransport)
-      log()
       
       do {
         let proc = Processor(service: self.serviceHandler)
@@ -55,11 +46,7 @@ open class TPerfectHTTPServer<InProtocol: TProtocol, OutProtocol: TProtocol, Pro
     server = HTTPServer.Server(name: name,
                                address: address,
                                port: port,
-                               routes: Routes([route]),
-                               requestFilters: [(RequestLogger(), HTTPFilterPriority.high)],
-                               responseFilters: [(RequestLogger(), HTTPFilterPriority.low)])
-
-    
+                               routes: Routes([route]))
   }
   
   public func serve() throws {
