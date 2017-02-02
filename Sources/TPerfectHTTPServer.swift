@@ -28,7 +28,7 @@ open class TPerfectHTTPServer<InProtocol: TProtocol, OutProtocol: TProtocol, Pro
       // logging helper
       func log() {
         let msgTuple = try? InProtocol(on: request.readTransport()).readMessageBegin()
-        LogFile.info("\(Date()) [\(msgTuple?.0 ?? "unknown")] from \(request.remoteAddress.host)")
+        LogFile.info("\(Date()) [\(name):\(msgTuple?.0 ?? "unknown")] from \(request.remoteAddress.host)")
       }
       
       // set header
