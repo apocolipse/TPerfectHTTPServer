@@ -1,15 +1,15 @@
 import XCTest
-@testable import TZewoHTTPServer
+@testable import TPerfectHTTPServer
 
-class TZewoHTTPServerTests: XCTestCase {
+class TPerfectHTTPServerTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        XCTAssertEqual(TZewoHTTPServer().text, "Hello, World!")
+        XCTAssertEqual(TPerfectHTTPServer().text, "Hello, World!")
     }
 
 
-    static var allTests : [(String, (TZewoHTTPServerTests) -> () throws -> Void)] {
+    static var allTests : [(String, (TPerfectHTTPServerTests) -> () throws -> Void)] {
         return [
             ("testExample", testExample),
         ]

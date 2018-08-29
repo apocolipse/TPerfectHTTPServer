@@ -1,6 +1,6 @@
 import XCTest
-@testable import TZewoHTTPServerTests
+@testable import TPerfectHTTPServerTests
 
 XCTMain([
-     testCase(TZewoHTTPServerTests.allTests),
+     testCase(TPerfectHTTPServerTests.allTests),
 ])
