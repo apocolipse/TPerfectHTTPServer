@@ -25,6 +25,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+Notice
+========
+As of v2.0.0, Swift 3.x is no longer supported.  Please use older v1.1.2 of TPerfectHTTPServer if you need Swift 3 support
+
 
 About
 ========
