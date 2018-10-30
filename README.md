@@ -44,7 +44,7 @@ Adding dependency
 Add the following in `Package.swift`
 ```swift
   dependencies: [
-    .Package(url: "https://github.com/apocolipse/TPerfectHTTPServer.git", majorVersion: 0, minor: 1),
+    .package(url: "https://github.com/apocolipse/TPerfectHTTPServer.git", from: "2.0.0")
   ]
 ```
 
